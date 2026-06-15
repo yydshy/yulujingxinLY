@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO 获客直播课程 · 两场完整梳理与精华提炼</title>
+<style>
+  :root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --yellow: #d97706;
+    --yellow-light: #fef3c7;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --radius: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #3b82f6 100%);
+    border-radius: 16px;
+    padding: 48px 40px;
+    margin-bottom: 28px;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(37,99,235,0.25);
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    margin-bottom: 16px;
+  }
+  .hero .meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    flex-wrap: wrap;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-light);
+    color: var(--accent);
+  }
+  .card h3 {
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+    color: var(--text);
+  }
+  .card h3:first-of-type { margin-top: 0; }
+  .card p { margin-bottom: 12px; color: var(--text-secondary); }
+  .card ul, .card ol {
+    margin: 8px 0 16px 20px;
+    color: var(--text-secondary);
+  }
+  .card li { margin-bottom: 6px; }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .tag-true  { background: var(--green-light); color: var(--green); }
+  .tag-part  { background: var(--yellow-light); color: var(--yellow); }
+  .tag-false { background: var(--red-light); color: var(--red); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td { color: var(--text-secondary); }
+
+  /* Comparison */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 640px) { .comparison-grid { grid-template-columns: 1fr; } }
+  .comp-box {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .comp-box h4 {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+
+  /* Highlight Box */
+  .highlight {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .highlight p { margin: 0; color: var(--text); }
+  .highlight strong { color: var(--accent); }
+
+  /* Steps */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    margin: 16px 0;
+    padding: 0;
+  }
+  .steps li {
+    counter-increment: step;
+    padding: 12px 16px 12px 52px;
+    position: relative;
+    margin-bottom: 8px;
+    background: var(--bg);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  /* Insight card */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 640px) { .insight-grid { grid-template-columns: 1fr; } }
+  .insight-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid var(--border);
+  }
+  .insight-item .num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent);
+    opacity: 0.3;
+    float: left;
+    margin-right: 10px;
+    line-height: 1;
+  }
+  .insight-item p { margin: 0; font-size: 0.92rem; }
+
+  /* Formula */
+  .formula {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 20px 0;
+    border: 2px dashed var(--accent);
+  }
+  .formula .arrow { color: var(--accent); }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+  }
+
+  /* Verdict */
+  .verdict {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 16px 0;
+  }
+  .verdict-icon { font-size: 2rem; min-width: 40px; text-align: center; }
+  .verdict-true { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .verdict-mixed { background: #fffdf5; border: 1px solid #fde68a; }
+
+  /* TOC */
+  .toc { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 640px) { .toc { grid-template-columns: 1fr; } }
+  .toc li { padding: 6px 0; }
+  .toc a { color: var(--accent); text-decoration: none; font-size: 0.92rem; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 0.82rem;
+    color: #94a3b8;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>GEO 获客直播课程 · 两场完整梳理</h1>
+    <div class="subtitle">趣搜科技「AI 获客 × GEO 实战训练营」直播课程精华提炼、真伪判断与知识体系整合</div>
+    <div class="meta">
+      <span>📅 梳理日期：2026-06-11</span>
+      <span>👤 主讲人：志毅（趣搜科技合伙人）</span>
+      <span>📝 整理者：WorkBuddy</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="card">
+    <h2>📑 目录</h2>
+    <ol class="toc">
+      <li><a href="#s1">一、两场直播概览</a></li>
+      <li><a href="#s2">二、第一天核心内容（基础认知 + 实操演示）</a></li>
+      <li><a href="#s3">三、第二天核心内容（AI名片 + 案例写作）</a></li>
+      <li><a href="#s4">四、真伪判断总表</a></li>
+      <li><a href="#s5">五、两场直播的核心干货提炼</a></li>
+      <li><a href="#s6">六、两场直播的完整知识体系</a></li>
+      <li><a href="#s7">七、可立即上手的行动清单</a></li>
+      <li><a href="#s8">八、对「雨潞净心」的启示</a></li>
+    </ol>
+  </div>
+
+  <!-- Section 1: Overview -->
+  <div class="card" id="s1">
+    <h2>一、两场直播概览</h2>
+
+    <div class="comparison-grid">
+      <div class="comp-box">
+        <h4>🎬 第一天（整理版 5）</h4>
+        <p><strong>主题</strong>：GEO 基础认知 + 实操演示</p>
+        <ul>
+          <li>流量变迁史：门户 → 百度 → 微信 → 抖音 → AI</li>
+          <li>为什么 AI 不推荐你的品牌？</li>
+          <li>豆包/DeepSeek 推荐逻辑实机演示</li>
+          <li>GEO 七步流程拆解</li>
+          <li>四大收录原则</li>
+          <li>不同平台信息源策略</li>
+        </ul>
+      </div>
+      <div class="comp-box">
+        <h4>🎬 第二天（整理版 6）</h4>
+        <p><strong>主题</strong>：企业AI名片 + 客户案例写作</p>
+        <ul>
+          <li>各行业 GEO 获客案例</li>
+          <li>AI 内容 T1/T2/T3 分级体系</li>
+          <li>企业 AI 信任资产系统</li>
+          <li>企业资料库搭建方法</li>
+          <li>客户案例文章 8 步结构</li>
+          <li>GEO 完整闭环公式</li>
+          <li>线下课推广</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <p><strong>两场直播的关系：</strong>第一天讲"为什么做"和"是什么"，第二天讲"怎么做"和"持续优化"。第一天偏认知和框架，第二天偏方法论和工具。合在一起构成一套从诊断到发布的完整 GEO 工作流。</p>
+    </div>
+  </div>
+
+  <!-- Section 2: Day 1 -->
+  <div class="card" id="s2">
+    <h2>二、第一天核心内容</h2>
+
+    <h3>2.1 核心论点</h3>
+    <table>
+      <tr><th width="30%">论点</th><th>内容</th><th width="12%">验证</th></tr>
+      <tr><td>流量入口变迁</td><td>门户→百度SEO→微信/微商→抖音→AI。每次技术变迁都会带来新的品牌机会。AI 像 2018 年的抖音。</td><td><span class="tag tag-true">基本正确</span></td></tr>
+      <tr><td>7 亿+ AI 月活</td><td>当前约 7.08 亿，半年后预测 11.7 亿，将超越抖音+小红书总和。</td><td><span class="tag tag-true">数据可信</span></td></tr>
+      <tr><td>AI 不推荐你的根本原因</td><td>过去的内容是"品牌自我宣传"视角，而非"回答客户提问"视角。</td><td><span class="tag tag-true">核心洞察</span></td></tr>
+      <tr><td>AI 喜欢的内容特征</td><td>结构化（1、2、3 罗列）、数据化（数字说话）、权威化（可核查信任背书）。</td><td><span class="tag tag-true">业界共识</span></td></tr>
+      <tr><td>各平台信息源偏好</td><td>豆包→头条/抖音；元宝→公众号；DeepSeek→官网/技术文档；千问→阿里生态</td><td><span class="tag tag-true">基本正确</span></td></tr>
+      <tr><td>豆包变现已打通</td><td>豆包已打通抖音商城/团购；千问打通淘宝；微信打通小程序 AI。</td><td><span class="tag tag-true">已验证</span></td></tr>
+    </table>
+
+    <h3>2.2 AI 收录内容的四大原则</h3>
+    <ol>
+      <li><strong>内容质量优先</strong>：原创、有观点、有深度、价值密度高，必须"利他"——能解答客户问题</li>
+      <li><strong>EEAT 原则</strong>：专业化（Expertise）、经验（Experience）、权威（Authoritativeness）、可信（Trustworthiness）</li>
+      <li><strong>语义相关性</strong>：AI 做实时语义匹配。你写"广州高端健身房测评"，用户搜"广州高端健身房哪家好"，匹配上了就推荐你</li>
+      <li><strong>时效性</strong>：持续更新内容，不能发一篇就不管了</li>
+    </ol>
+
+    <h3>2.3 AI 推荐的四步逻辑</h3>
+    <ol class="steps">
+      <li><strong>理解用户的问题</strong> — 语义解析用户真正在问什么</li>
+      <li><strong>全网检索内容</strong> — 去信息源平台召回相关内容</li>
+      <li><strong>匹配打分排序</strong> — 对召回内容进行质量、相关性、可信度评分</li>
+      <li><strong>生成最佳答案</strong> — 把评分最高的内容整合成一个回答推给用户</li>
+    </ol>
+
+    <h3>2.4 GEO 七步流程</h3>
+    <ol class="steps">
+      <li><strong>诊断分析</strong> — 四步诊断：业务词诊断、品牌词诊断、可信度诊断、转化度诊断</li>
+      <li><strong>企业资料库建立</strong> — 把企业信息整理成 AI 能读懂的结构化文档（即"AI 名片"）</li>
+      <li><strong>关键词/场景分析</strong> — 用百度指数、微信指数、抖音指数找用户真实的搜索场景</li>
+      <li><strong>选题</strong> — 先卡高转化的关键词，锁定最擅长的用户场景</li>
+      <li><strong>内容创作</strong> — 企业资料库 + 提示词 → AI 生成 GEO 文章</li>
+      <li><strong>发布到信息源</strong> — 不同平台对应不同信息源</li>
+      <li><strong>持续更新</strong> — 不是一次性的工作</li>
+    </ol>
+
+    <h3>2.5 实机演示关键发现</h3>
+    <div class="insight-grid">
+      <div class="insight-item">
+        <span class="num">01</span>
+        <p><strong>场景锁定</strong>：AI 对泛问题会先按"场景"推荐品牌。做 GEO 要锁定你最擅长的一个场景来优化。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">02</span>
+        <p><strong>信息源可观察</strong>：点豆包的"参考资料"就能看到它抓取了哪些网站。去那些平台做内容就行。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">03</span>
+        <p><strong>非大品牌也有机会</strong>：豆包推荐的很多是小品牌，只要内容回答了问题、关键词匹配，就会推荐。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">04</span>
+        <p><strong>付费信息源存在</strong>：如"菏泽广电网"，是付费媒体渠道。自然信息源也有大量免费空间。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Day 2 -->
+  <div class="card" id="s3">
+    <h2>三、第二天核心内容</h2>
+
+    <h3>3.1 AI 内容分级体系（T1 / T2 / T3）</h3>
+    <table>
+      <tr><th width="8%">级别</th><th>定义</th><th>AI 权重</th><th>示例</th></tr>
+      <tr>
+        <td><strong>T1</strong></td>
+        <td>有第三方可验证的信息</td>
+        <td>最高</td>
+        <td>专利、学术论文、政府背书、新华网/人民网报道</td>
+      </tr>
+      <tr>
+        <td><strong>T2</strong></td>
+        <td>可交叉验证的品牌主张</td>
+        <td>中等</td>
+        <td>多个平台都能找到的一致信息，官网+搜狐+知乎共同验证</td>
+      </tr>
+      <tr>
+        <td><strong>T3</strong></td>
+        <td>不可验证的单方声明</td>
+        <td>最低</td>
+        <td>"我们是最好的""行业领先"——纯自夸，AI 不引用</td>
+      </tr>
+    </table>
+
+    <div class="highlight">
+      <p><strong>⚠️ 标注：</strong>T1/T2/T3 是趣搜科技自创的教学框架，并非 AI 平台官方标准。但核心理念与行业共识一致——AI 确实偏好可验证、可交叉比对的信息。学术论文中称为"source credibility"和"cross-verification"。</p>
+    </div>
+
+    <h3>3.2 企业 AI 信任资产系统（AI 名片）</h3>
+    <p>核心公式：</p>
+    <div class="formula">
+      企业资料库 <span class="arrow">+</span> 提示词 <span class="arrow">=</span> 一篇能被 AI 收录的好文章
+    </div>
+    <p>类比：企业资料库 = 原材料，提示词 = 配方。两者缺一不可。</p>
+
+    <h4>不同类型企业的信任状清单</h4>
+    <table>
+      <tr><th>企业类型</th><th>核心信任状</th></tr>
+      <tr><td><strong>ToB / 制造业</strong></td><td>政府奖项、国际认证、专利、客户占有率、标杆案例、合作伙伴、服务承诺</td></tr>
+      <tr><td><strong>产品型企业</strong></td><td>产品配方/工艺标准、第三方口碑、供应链保障、质检认证</td></tr>
+      <tr><td><strong>本地生活 / 门店</strong></td><td>营业执照、本地口碑、服务能力、客户见证、环境体验、售后保障</td></tr>
+      <tr><td><strong>创业初期小公司</strong></td><td>创始人个人经历和背景也可以作为 AI 背书</td></tr>
+    </table>
+
+    <h3>3.3 客户案例文章 8 步结构</h3>
+    <ol class="steps">
+      <li><strong>客户背景介绍</strong> — 客户的规模、行业、背景</li>
+      <li><strong>核心痛点描述</strong> — 1、2、3、4 分点列出客户面临的问题</li>
+      <li><strong>传统方案的局限性</strong> — 为什么以前的解法行不通</li>
+      <li><strong>解决方案思路</strong> — 你的公司是如何分步骤解决的</li>
+      <li><strong>成效验证</strong> — ⭐ 前后数据对比（必须量化，如"人力成本降低 62%"）</li>
+      <li><strong>客户真实反馈</strong> — 直接引用客户原话</li>
+      <li><strong>行业启示 / 可复制方法论</strong> — ⭐ 利他属性，给出行 1、2、3 干货</li>
+      <li><strong>服务总结</strong> — 整体回顾</li>
+    </ol>
+
+    <div class="highlight">
+      <p><strong>两个核心要求：</strong>① 必须有使用前后的数据对比（数据化）；② 文章结尾必须给出可复制的方法论和干货（利他）。没有这两点，就是自我宣传的广告，AI 不会深度引用。</p>
+    </div>
+  </div>
+
+  <!-- Section 4: Truth Verification -->
+  <div class="card" id="s4">
+    <h2>四、真伪判断总表</h2>
+
+    <table>
+      <tr><th width="5%">#</th><th>主张</th><th width="15%">结论</th><th>说明与依据</th></tr>
+      <tr>
+        <td>1</td><td>AI 大模型月活 7 亿+，半年后预测 11.7 亿</td>
+        <td><span class="tag tag-true">✅ 可信</span></td>
+        <td>QuestMobile 2026.5 报告显示 7.29 亿。增长趋势得到多方验证。11.7 亿是预测而非确定数据。</td>
+      </tr>
+      <tr>
+        <td>2</td><td>豆包打通抖音商城/团购，千问打通淘宝，微信打通小程序</td>
+        <td><span class="tag tag-true">✅ 已验证</span></td>
+        <td>微信小程序 AI 2026.6.8 官宣。豆包电商功能已上线。千问淘宝打通已确认。</td>
+      </tr>
+      <tr>
+        <td>3</td><td>各平台信息源偏好（豆包→头条，元宝→公众号等）</td>
+        <td><span class="tag tag-true">✅ 基本正确</span></td>
+        <td>与多方行业观察一致。但实际引用受多因素影响，非绝对规则。</td>
+      </tr>
+      <tr>
+        <td>4</td><td>"AI 不推荐你是因为内容站在自我宣传角度"</td>
+        <td><span class="tag tag-true">✅ 核心洞察</span></td>
+        <td>被多次独立验证。AI 倾向引用"利他型"内容而非广告。</td>
+      </tr>
+      <tr>
+        <td>5</td><td>AI 喜欢结构化、数据化、权威化的内容</td>
+        <td><span class="tag tag-true">✅ 业界共识</span></td>
+        <td>与 Princeton GEO 论文、Google 搜索质量指南、业界白皮书一致。</td>
+      </tr>
+      <tr>
+        <td>6</td><td>四大收录原则（质量、EEAT、语义、时效）</td>
+        <td><span class="tag tag-true">✅ 正确</span></td>
+        <td>EEAT 源自 Google，已被 AI 搜索领域广泛引用。语义相关性和时效性均有研究支撑。</td>
+      </tr>
+      <tr>
+        <td>7</td><td>豆包已开始抓取短视频内容</td>
+        <td><span class="tag tag-part">⚠️ 部分正确</span></td>
+        <td>豆包确实具备多模态能力。但"抓取短视频作为引用源"的广度和权重目前尚不明确。</td>
+      </tr>
+      <tr>
+        <td>8</td><td>T1/T2/T3 内容分级体系</td>
+        <td><span class="tag tag-part">⚠️ 教学框架</span></td>
+        <td>这是趣搜科技自创的教学框架，非 AI 平台官方标准。核心理念合理，但分级定义略显粗糙。</td>
+      </tr>
+      <tr>
+        <td>9</td><td>"所有行业都适合做 GEO"</td>
+        <td><span class="tag tag-part">⚠️ 语义模糊</span></td>
+        <td>"适合做 GEO"和"GEO 是主要获客渠道"是两回事。高度体验型/冲动消费型行业 ROI 存疑。</td>
+      </tr>
+      <tr>
+        <td>10</td><td>各行业获客案例（眼科、律所、夏令营、工厂等）</td>
+        <td><span class="tag tag-part">⚠️ 无法独立验证</span></td>
+        <td>案例细节由主讲方提供，无法独立验证具体成交数据。但行业中确实存在类似成功案例。</td>
+      </tr>
+    </table>
+
+    <div class="verdict verdict-mixed">
+      <div class="verdict-icon">⚖️</div>
+      <div>
+        <strong>总体判断：内容方向正确，方法论可操作，但有商业包装</strong>
+        <p style="margin-top: 8px;">核心框架（流量变迁、内容策略、信息源选择、企业资料库）经多方交叉验证，与学术研究和行业共识一致。具体的数据主张（7亿、11.7亿预测）有数据支撑但含营销色彩。T1/T2/T3 分级是其自创教学框架。课程有明显的商业转化目的（推广线下课和 GEO 服务），但在"教真东西的前提下做商业转化"，不同于纯粹的收割。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Key Insights -->
+  <div class="card" id="s5">
+    <h2>五、两场直播的核心干货提炼</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 20px;">以下 15 条是从两场直播共 650+ 行实录中提炼的最有价值内容，按主题分类。</p>
+
+    <h3>🔑 认知层（改变思维）</h3>
+    <div class="insight-grid">
+      <div class="insight-item">
+        <span class="num">01</span>
+        <p><strong>GEO 的核心不是技术，是内容视角的转换。</strong>你过去所有内容都是"我是谁、我多好"，AI 要的是"你帮客户解决了什么问题"。换一个视角，同样的内容就能被收录。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">02</span>
+        <p><strong>客户已经把选择权交给了 AI。</strong>这是 AI 时代与以往所有平台最大的不同。以前用户在淘宝/抖音里自己挑，现在直接问 AI "哪个好"，AI 替用户做选择。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">03</span>
+        <p><strong>AI 的推荐不是挑大品牌，而是挑"在某个场景下内容最多的公司"。</strong>你在某个场景发的文章越多、质量越高，AI 就越倾向于在相关提问中推荐你。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">04</span>
+        <p><strong>品牌 → AI → 用户。</strong>AI 时代营销的新路径。先给 AI 种草，先让 AI 相信你认可你，品牌才能精准触达到客户。</p>
+      </div>
+    </div>
+
+    <h3>🔧 方法层（怎么做）</h3>
+    <div class="insight-grid">
+      <div class="insight-item">
+        <span class="num">05</span>
+        <p><strong>四步诊断法</strong>：搜业务词→搜品牌词→看 AI 评价正负面→确认联系方式是否正确。五钟就能发现你品牌的 GEO 现状问题。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">06</span>
+        <p><strong>反向工程找信息源</strong>：去豆包搜你的行业词，点"参考资料"看它引用了哪些网站。那些网站就是你应该做内容的平台。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">07</span>
+        <p><strong>企业资料库是 GEO 的地基</strong>：把所有散乱资料（官网、PPT、案例、荣誉）喂给 AI，让它整理成结构化文档。后续所有文章都基于这个资料库生成。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">08</span>
+        <p><strong>品宣文 ≠ 广告文</strong>：要用"行业洞察 + 选型标准 + 场景实践 + 风险规避"的结构，100% 中立视角。禁用营销词和"三大四大五大"模板句式。</p>
+      </div>
+    </div>
+
+    <h3>📝 内容层（写什么）</h3>
+    <div class="insight-grid">
+      <div class="insight-item">
+        <span class="num">09</span>
+        <p><strong>客户案例文章的黄金 8 步</strong>：背景→痛点→传统局限→解决方案→数据对比→客户反馈→行业启示→总结。缺一不可。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">10</span>
+        <p><strong>"利他"是铁律</strong>：每篇文章结尾必须给出可复制的方法论和干货。让 AI 认为你是在帮用户解决问题，不是在做广告。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">11</span>
+        <p><strong>数据是 AI 的货币</strong>：好的表达是"服务500强企业12家，续约率95%，售后响应15分钟"；差的表达是"众多客户的选择"。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">12</span>
+        <p><strong>多平台交叉验证</strong>：AI 不会只看你一个平台的内容，会去多个平台交叉比对。所以同一信息要在多平台发布，形成证据链。</p>
+      </div>
+    </div>
+
+    <h3>🚀 执行层（怎么持续）</h3>
+    <div class="insight-grid">
+      <div class="insight-item">
+        <span class="num">13</span>
+        <p><strong>官网是 AI 世界里的"门店门头"</strong>：官网让 AI 认为你是真实经营的企业。官网上的信息可信度更高，能产生 GEO 复利。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">14</span>
+        <p><strong>不是做一次就完了</strong>：GEO 和做短视频一样，要持续发内容。每次有新案例、新动态、新客户反馈，都要写成文章分发。</p>
+      </div>
+      <div class="insight-item">
+        <span class="num">15</span>
+        <p><strong>GEO 完整闭环</strong>：原始资料库 → 提示词 → AI生成 → 核实 → 分发到信息源 → 监测效果 → 迭代优化 → 持续更新</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Complete System -->
+  <div class="card" id="s6">
+    <h2>六、两场直播的完整知识体系</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 16px;">将两天内容整合为一套端到端的 GEO 操作框架：</p>
+
+    <div class="formula" style="font-size: 0.95rem;">
+      🔍 诊断 <span class="arrow">→</span> 📚 资料库 <span class="arrow">→</span> 🔑 关键词 <span class="arrow">→</span> ✍️ 选题 <span class="arrow">→</span> 🤖 AI写作 <span class="arrow">→</span> ✅ 核实 <span class="arrow">→</span> 📡 分发 <span class="arrow">→</span> 📊 监测 <span class="arrow">→</span> 🔄 迭代
+    </div>
+
+    <table>
+      <tr><th width="10%">阶段</th><th>具体操作</th><th>工具/方法</th><th>产出</th></tr>
+      <tr>
+        <td><strong>1. 诊断</strong></td>
+        <td>在豆包搜业务词 + 品牌词，看 AI 推了谁、怎么评价你、联系方式对不对</td>
+        <td>豆包 / DeepSeek / 元宝</td>
+        <td>GEO 现状报告</td>
+      </tr>
+      <tr>
+        <td><strong>2. 资料库</strong></td>
+        <td>把官网、PPT、案例、荣誉等全部散乱资料喂给 AI，生成结构化企业档案</td>
+        <td>提示词："按 GEO 收录逻辑整理企业资料，满足结构化、数据化、权威化"</td>
+        <td>企业 AI 名片（2万字左右）</td>
+      </tr>
+      <tr>
+        <td><strong>3. 关键词</strong></td>
+        <td>用百度指数/微信指数/抖音指数找用户搜索场景和需求词</td>
+        <td>百度指数、微信指数、抖音指数</td>
+        <td>需求词矩阵</td>
+      </tr>
+      <tr>
+        <td><strong>4. 选题</strong></td>
+        <td>先锁定 1-2 个你最擅长的用户场景，先卡高转化词</td>
+        <td>场景 × 需求词交叉匹配</td>
+        <td>选题列表</td>
+      </tr>
+      <tr>
+        <td><strong>5. AI 写作</strong></td>
+        <td>企业资料库 + 品宣提示词/案例提示词 → 生成 GEO 文章</td>
+        <td>品宣模板 / 客户案例模板</td>
+        <td>AI 可收录文章</td>
+      </tr>
+      <tr>
+        <td><strong>6. 核实</strong></td>
+        <td>检查内容是否与公司实际一致，数据是否真实</td>
+        <td>人工审核</td>
+        <td>定稿文章</td>
+      </tr>
+      <tr>
+        <td><strong>7. 分发</strong></td>
+        <td>发布到 AI 喜欢抓取的信息源平台（头条→豆包、公众号→元宝、知乎→DeepSeek 等）</td>
+        <td>头条号、公众号、知乎、搜狐号等</td>
+        <td>可被抓取的内容资产</td>
+      </tr>
+      <tr>
+        <td><strong>8. 监测</strong></td>
+        <td>定期搜索关键词，看品牌是否出现、评价是否正确</td>
+        <td>定期人工搜索 + 记录对比</td>
+        <td>效果月报</td>
+      </tr>
+      <tr>
+        <td><strong>9. 迭代</strong></td>
+        <td>没覆盖到的角度继续写；已有内容持续更新；新案例及时补充</td>
+        <td>持续运营</td>
+        <td>GEO 复利</td>
+      </tr>
+    </table>
+
+    <h3>三套提示词模板汇总</h3>
+    <table>
+      <tr><th>模板</th><th>用途</th><th>来源</th></tr>
+      <tr>
+        <td><strong>品宣提示词</strong></td>
+        <td>生成品牌宣传类 GEO 文章（中立行业观察者视角，6模块结构）</td>
+        <td>第一天课程赠送</td>
+      </tr>
+      <tr>
+        <td><strong>客户案例提示词</strong></td>
+        <td>把合作案例写成 AI 能收录的结构化文章（8 步结构+数据对比）</td>
+        <td>第二天课程赠送</td>
+      </tr>
+      <tr>
+        <td><strong>企业资料库提示词</strong></td>
+        <td>把散乱企业资料整理成结构化 AI 名片</td>
+        <td>第二天课程讲解</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Section 7: Action Checklist -->
+  <div class="card" id="s7">
+    <h2>七、可立即上手的行动清单</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 16px;">不需要买课、不需要付费工具，以下 5 件事今天就能做：</p>
+
+    <ol class="steps">
+      <li>
+        <strong>5分钟诊断</strong><br>
+        去豆包搜"你的行业词 + 哪家好"，截图保存。看推荐了谁、引用了哪些网站。再搜你的品牌名，看 AI 怎么评价。
+      </li>
+      <li>
+        <strong>30分钟整理资料库</strong><br>
+        把公司介绍、产品信息、资质证书、客户案例全部整理到一个文档里，发给豆包让它按 GEO 格式重新结构化输出。
+      </li>
+      <li>
+        <strong>10分钟确定信息源</strong><br>
+        根据行业选择 2-3 个平台：头条号（对接豆包）、公众号（对接元宝）、知乎（对接 DeepSeek）。
+      </li>
+      <li>
+        <strong>1-2小时写第一篇</strong><br>
+        用品宣提示词 + 你的企业资料库，生成第一篇文章。核实内容无误后发布到选定的平台。
+      </li>
+      <li>
+        <strong>2周后验证</strong><br>
+        再去豆包搜同样的词，看品牌是否出现、评价是否变化。记录对比。
+      </li>
+    </ol>
+
+    <div class="highlight">
+      <p><strong>一句话总结："反向工程找信息源 → 结构化整理企业资料 → 用提示词生成文章 → 发布到信息源 → 持续迭代"</strong></p>
+    </div>
+  </div>
+
+  <!-- Section 8: Yulu Jingxin -->
+  <div class="card" id="s8">
+    <h2>八、对「雨潞净心」的启示</h2>
+
+    <p style="color: var(--text-secondary);">基于这两场直播的方法论，「雨潞净心旅修营」可以直接套用的几条：</p>
+
+    <h3>1. 你的核心优势（直播间讲的就是这个）</h3>
+    <div class="highlight">
+      <p>直播间反复强调：<strong>"AI 不是挑知名品牌，它找的是在某个特定场景下，内容最多的公司。"</strong> 旅修营这个品类还几乎没有竞争——你现在进去就是品类第一。</p>
+    </div>
+
+    <h3>2. 你的信任状清单（套用第二天模板）</h3>
+    <table>
+      <tr><th>类型</th><th>雨潞净心对应内容</th></tr>
+      <tr><td>⭕ 权威资质</td><td>导师的受训背景、认证资质、从业年限</td></tr>
+      <tr><td>⭕ 数据成果</td><td>举办场次、服务人数、复购率、满意度评分</td></tr>
+      <tr><td>⭕ 案例证明</td><td>典型学员故事、团队团建案例</td></tr>
+      <tr><td>⭕ 合作资源</td><td>合作过的场地、合作过的企业/品牌</td></tr>
+      <tr><td>⭕ 品牌承诺</td><td>退款政策、安全保障、隐私保护</td></tr>
+      <tr><td>⭕ 创始人故事</td><td>为什么做旅修营、个人经历、愿景（小公司的特别优势）</td></tr>
+    </table>
+
+    <h3>3. 你的内容方向（用七步法对应）</h3>
+    <ol class="steps">
+      <li><strong>诊断</strong>：去豆包搜"广州减压周末活动""公司团建新方式""颂钵冥想靠谱吗"，看推了什么</li>
+      <li><strong>资料库</strong>：用第二天的方法，把你所有资料发给 AI 生成结构化企业档案</li>
+      <li><strong>关键词</strong>：不需要工具。你的场景词就是"减压""团建""颂钵""冥想""旅修"</li>
+      <li><strong>选题</strong>：品类科普文（旅修营是什么）、场景方案文（团建新选择）、FAQ答疑（颂钵靠谱吗）</li>
+      <li><strong>AI写作</strong>：用品宣模板 + 你的资料库生成文章。客户案例模板改写成学员故事</li>
+      <li><strong>分发</strong>：公众号（元宝）+ 头条号（豆包）+ 知乎（DeepSeek）</li>
+      <li><strong>持续</strong>：每次活动结束后写一篇学员故事/活动回顾</li>
+    </ol>
+
+    <div class="highlight">
+      <p><strong>最关键的一点：</strong>你在这个品类几乎没有竞争对手。现在开始做 GEO，当有人开始搜"旅修营""广州减压活动""新型团建"时，你的内容就是 AI 能找到的唯一答案。</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>整理于 2026-06-11 · 基于趣搜科技 GEO 获客直播课程实录（整理版 5 + 整理版 6）</p>
+    <p>包含真伪判断、精华提炼与知识体系整合 · 仅供内部学习参考</p>
+  </div>
+
+</div>
+
+</body>
+</html>
