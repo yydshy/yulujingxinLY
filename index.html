@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
@@ -433,22 +433,6 @@
       background: var(--cream);
       position: relative;
       overflow: hidden;
-    }
-
-    .founder-bg-accent {
-      position: absolute;
-      right: 0; top: 0;
-      width: 45%;
-      height: 100%;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .founder-bg-accent img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .founder-inner {
@@ -988,7 +972,6 @@
       .founder-inner { grid-template-columns: 1fr; gap: 2rem; }
       .founder-avatar-col { flex-direction: row; gap: 1.5rem; align-items: center; text-align: left; }
       .founder-avatar-wrap { width: 120px; height: 120px; margin-bottom: 0; }
-      .founder-bg-accent { width: 100%; height: 200px; top: auto; bottom: 0; opacity: 0.05; }
 
       .stories-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1004,6 +987,68 @@
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .founder-avatar-col { flex-direction: column; text-align: center; }
     }
+  /* ── GALLERY VERTICAL ── */
+  .gallery-vertical {
+    padding: 5rem 0 3rem;
+    background: var(--paper);
+  }
+
+  .gallery-vertical .section-tag,
+  .gallery-vertical .section-h2,
+  .gallery-vertical .section-desc {
+    padding: 0 5%;
+  }
+
+  .gallery-v-grid {
+    margin-top: 3rem;
+    column-count: 3;
+    column-gap: 14px;
+    padding: 0 5%;
+  }
+
+  .gallery-v-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s ease;
+    break-inside: avoid;
+    object-fit: cover;
+  }
+
+  .gallery-v-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 40px rgba(44,36,23,0.16);
+  }
+
+  /* Tablet: 2 columns */
+  @media (max-width: 1024px) {
+    .gallery-v-grid {
+      column-count: 2;
+    }
+  }
+
+  /* Mobile: single column, full-width stack */
+  @media (max-width: 768px) {
+    .gallery-v-grid {
+      column-count: 1;
+      padding: 0 4%;
+      gap: 0;
+    }
+
+    .gallery-v-img {
+      margin-bottom: 10px;
+      border-radius: 6px;
+    }
+
+    .gallery-vertical {
+      padding: 3rem 0 2rem;
+    }
+  }
+
   </style>
 </head>
 <body>
@@ -1095,14 +1140,11 @@
 
 <!-- FOUNDER -->
 <section class="founder" id="founder">
-  <div class="founder-bg-accent">
-    <img src="images/founder-bg.jpg" alt="" aria-hidden="true" loading="lazy" />
-  </div>
   <div class="section-tag reveal">创始人</div>
   <div class="founder-inner">
     <div class="founder-avatar-col reveal">
       <div class="founder-avatar-wrap">
-        <img src="images/avatar-ting.jpg" alt="何婷，雨潞净心主理人" loading="lazy" />
+        <img src="images/avatar-ting.jpg" alt="何婷，雨潞净心主理人" />
       </div>
       <div>
         <div class="founder-name">何婷</div>
@@ -1342,39 +1384,31 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
+<!-- GALLERY VERTICAL -->
+<section class="gallery-vertical" id="gallery">
   <div class="section-tag reveal">光影录</div>
   <h2 class="section-h2 reveal">那些被温柔记录的时刻</h2>
   <p class="section-desc reveal">
     每一帧都是真实的旅修瞬间——阳光、草地、颂钵、拥抱、笑容。
   </p>
 
-  <div class="gallery-grid reveal">
-    <div class="gallery-item" onclick="openLightbox('images/gallery/01.jpg')">
-      <img src="images/gallery/01.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/02.jpg')">
-      <img src="images/gallery/02.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/03.jpg')">
-      <img src="images/gallery/03.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/04.jpg')">
-      <img src="images/gallery/04.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/05.jpg')">
-      <img src="images/gallery/05.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/06.jpg')">
-      <img src="images/gallery/06.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/07.jpg')">
-      <img src="images/gallery/07.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
-    <div class="gallery-item" onclick="openLightbox('images/gallery/08.jpg')">
-      <img src="images/gallery/08.jpg" alt="旅修瞬间" loading="lazy" />
-    </div>
+  <div class="gallery-v-grid reveal">
+    <img src="images/gallery/01.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/01.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/02.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/02.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/03.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/03.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/04.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/04.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/05.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/05.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/06.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/06.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/07.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/07.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/08.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/08.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/09.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/09.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/10.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/10.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/11.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/11.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/12.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/12.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/13.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/13.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/14.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/14.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/15.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/15.jpg')" alt="旅修瞬间" loading="lazy">
+    <img src="images/gallery/16.jpg" class="gallery-v-img" onclick="openLightbox('images/gallery/16.jpg')" alt="旅修瞬间" loading="lazy">
   </div>
 </section>
 
@@ -1393,11 +1427,11 @@
   <p class="section-desc reveal">
     无论你正在经历什么，<br/>
     雨潞净心都在这里，随时为你亮着一盏灯。<br/>
-    添加微信，找到最适合你的疗愈方式。
+    预约咨询，找到最适合你的疗愈方式。
   </p>
   <div class="cta-actions reveal">
-    <button class="btn-primary" onclick="openQR()" id="btnConsult">
-      预约咨询 —— 添加微信
+    <button class="btn-primary" onclick="openPhone()" id="btnConsult">
+      预约咨询
     </button>
   </div>
 
@@ -1413,13 +1447,18 @@
   </div>
 </section>
 
-<!-- QR MODAL -->
-<div class="qr-overlay" id="qrOverlay" onclick="closeQR(event)">
+<!-- PHONE MODAL -->
+<div class="qr-overlay" id="phoneOverlay" onclick="closePhone(event)">
   <div class="qr-card" onclick="event.stopPropagation()">
-    <button class="qr-close" onclick="closeQR()" aria-label="关闭">✕</button>
-    <img src="images/wechat-qr.png" alt="扫一扫添加微信咨询" />
-    <h3>添加微信咨询</h3>
-    <p>扫一扫二维码，直接与何婷老师沟通<br/>找到最适合你的疗愈方式</p>
+    <button class="qr-close" onclick="closePhone()" aria-label="关闭">✕</button>
+    <div style="font-size:3rem; margin-bottom:1rem;">📞</div>
+    <h3>预约咨询</h3>
+    <p style="font-size:1.6rem; color:var(--ink); font-family:'Noto Serif SC',serif; letter-spacing:0.12em; margin:0.75rem 0; font-weight:500;">
+      139 2888 2211
+    </p>
+    <p style="font-size:0.8rem; color:var(--ink-muted); line-height:1.6;">
+      微信同号
+    </p>
   </div>
 </div>
 
@@ -1535,15 +1574,15 @@
     }
   }
 
-  // QR code modal
-  function openQR() {
-    document.getElementById('qrOverlay').classList.add('open');
+  // Phone modal
+  function openPhone() {
+    document.getElementById('phoneOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
-  function closeQR(e) {
-    if (e && e.target !== document.getElementById('qrOverlay')) return;
-    document.getElementById('qrOverlay').classList.remove('open');
+  function closePhone(e) {
+    if (e && e.target !== document.getElementById('phoneOverlay')) return;
+    document.getElementById('phoneOverlay').classList.remove('open');
     document.body.style.overflow = '';
   }
 
@@ -1560,14 +1599,55 @@
     document.body.style.overflow = '';
   }
 
-  // Close lightbox/QR with Escape key
+  // Close lightbox/phone with Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeLightbox();
-      closeQR();
+      closePhone();
     }
   });
+
+  // ── 电影胶片：图片预加载完成后启动动画 ──
+  (function preloadFilmStrip() {
+    const trackSelector = '.film-strip-track';
+    const imgSelector   = '.film-strip-img';
+    const tracks = document.querySelectorAll(trackSelector);
+    const allImgs = document.querySelectorAll(imgSelector);
+    if (!allImgs.length) return;
+
+    let loaded = 0;
+    const total = allImgs.length;
+
+    function tryStartAnimations() {
+      // 所有图片已加载，触发一次 reflow 让动画从正确位置开始
+      tracks.forEach(track => {
+        const classes = track.className;
+        // 强制 reflow
+        void track.offsetWidth;
+        // 确保动画已在 CSS 中定义，此处仅需确认 track 可见
+        track.style.animationPlayState = 'running';
+      });
+    }
+
+    allImgs.forEach(img => {
+      if (img.complete && img.naturalWidth > 0) {
+        loaded++;
+      } else {
+        img.addEventListener('load', function onLoad() {
+          loaded++;
+          if (loaded >= total) tryStartAnimations();
+        });
+        img.addEventListener('error', function onError() {
+          loaded++;
+          if (loaded >= total) tryStartAnimations();
+        });
+      }
+    });
+
+    if (loaded >= total) tryStartAnimations();
+  })();
 </script>
 
 </body>
 </html>
+
